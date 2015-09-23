@@ -247,6 +247,42 @@ module.exports = {
                     }
                 }
             });
+    },
+    userIsAdminUpdate: function (req, res) {
+        User.findById(req.body.userID)
+            .exec(function (err, response) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    response.is_admin = !response.is_admin;
+                    User.findByIdAndUpdate(req.body.userID, response)
+                        .exec(function (err, response) {
+                            if (err) {
+                                res.send(err);
+                            } else {
+                                res.send(response);
+                            }
+                        });
+                }
+            });
+    },
+    userIsActiveUpdate: function (req, res) {
+        User.findById(req.body.userID)
+            .exec(function (err, response) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    response.currently_active = !response.currently_active;
+                    User.findByIdAndUpdate(req.body.userID, response)
+                        .exec(function (err, response) {
+                            if (err) {
+                                res.send(err);
+                            } else {
+                                res.send(response);
+                            }
+                        });
+                }
+            });
     }
 };
 

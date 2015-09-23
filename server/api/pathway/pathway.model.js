@@ -5,6 +5,7 @@ var newPathwaySchema = new Schema({
     pathway: [
         {
             name: { type: String },
+            is_active: { type: Boolean },
             completion: {
                 amount_completed: { type: Number, default: 0 },
                 total_to_complete: { type: Number, default: 100 },

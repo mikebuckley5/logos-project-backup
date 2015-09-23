@@ -49,6 +49,8 @@ app.get('/api/user-ethos/:memberId', userCtrl.getUserEthos);
 app.post('/api/add-user', userCtrl.addUser);
 app.put('/api/user-update', userCtrl.updateUser);
 app.put('/api/user-evaluation-update', userCtrl.updateEvalStatus);
+app.put('/api/user-update-isadmin', userCtrl.userIsAdminUpdate);
+app.put('/api/user-update-isactive', userCtrl.userIsActiveUpdate);
 //--Pathway Endpoints--//
 app.get('/api/pathway', pathwaysCtrl.find);
 app.post('/api/pathway', pathwaysCtrl.save);
