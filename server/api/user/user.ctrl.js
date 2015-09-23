@@ -200,20 +200,44 @@ module.exports = {
                                                             res.send(response);
                                                         }
                                                     });
-                                                // // } else if (evaluations[y]["needs_approval"] === true && evaluations[y]["pending"] === true) {
-
-                                                // }
-
-
-
-                                                // User.findByIdAndUpdate(req.body.userID, response)
-                                                //     .exec(function (err, response) {
-                                                //         if (err) {
-                                                //             res.send(err);
-                                                //         } else {
-                                                //             res.send(response);
-                                                //         }
-                                                //     });
+                                            } else if (evaluations[y]["needs_approval"] === true && evaluations[y]["pending"] === true) {
+                                                response.pathways[i]["stages"][x]["evaluations"][y]["complete"] = true;
+                                                var completeValue1 = response.pathways[i]["stages"][x]["evaluations"][y]["total_to_complete"];
+                                                response.pathways[i]["stages"][x]["amount_completed"] += completeValue1;
+                                                if (response.pathways[i]["stages"][x]["amount_completed"] === response.pathways[i]["stages"][x]["total_to_complete"]) {
+                                                    response.pathways[i]["stages"][x]["complete"] = true;
+                                                }
+                                                response.pathways[i]["completion"]["amount_completed"] += completeValue1;
+                                                if (response.pathways[i]["completion"]["amount_completed"] === response.pathways[i]["completion"]["total_to_complete"]) {
+                                                    response.pathways[i]["completion"]["complete"] = true;
+                                                }
+                                                User.findByIdAndUpdate(req.body.userID, response)
+                                                    .exec(function (err, response) {
+                                                        if (err) {
+                                                            res.send(err);
+                                                        } else {
+                                                            res.send(response);
+                                                        }
+                                                    });
+                                            } else if (evaluations[y]["needs_approval"] === false && evaluations[y]["complete"] === false) {
+                                                response.pathways[i]["stages"][x]["evaluations"][y]["complete"] = true;
+                                                var completeValue2 = response.pathways[i]["stages"][x]["evaluations"][y]["total_to_complete"];
+                                                response.pathways[i]["stages"][x]["amount_completed"] += completeValue2;
+                                                if (response.pathways[i]["stages"][x]["amount_completed"] === response.pathways[i]["stages"][x]["total_to_complete"]) {
+                                                    response.pathways[i]["stages"][x]["complete"] = true;
+                                                }
+                                                response.pathways[i]["completion"]["amount_completed"] += completeValue2;
+                                                if (response.pathways[i]["completion"]["amount_completed"] === response.pathways[i]["completion"]["total_to_complete"]) {
+                                                    response.pathways[i]["completion"]["complete"] = true;
+                                                }
+                                                User.findByIdAndUpdate(req.body.userID, response)
+                                                    .exec(function (err, response) {
+                                                        if (err) {
+                                                            res.send(err);
+                                                        } else {
+                                                            res.send(response);
+                                                        }
+                                                    });
                                             }
                                         }
                                     }
@@ -226,12 +250,21 @@ module.exports = {
     }
 };
 
-/* For initial user add testing
+/* For initial user add testing -- http://localhost:8555/api/add-user
 {
     "name": {
         "first": "Mike",
         "last": "Buckley"
     },
-    "gym": "55fddafabb429c4575c69617"
+    "gym": "5602fc16bfb07c49091b75d9"
+}
+*/
+
+/* For testing user-evaluation-update -- http://localhost:8555/api/user-evaluation-update
+{
+    "userID": "5602fc2e4bca0072095351a5",
+    "pathwayID": "5602df7192694e5da7fa4584",
+    "stageID": "5602df7192694e5da7fa4585",
+    "evalID": "5602df7192694e5da7fa4586"
 }
 */
