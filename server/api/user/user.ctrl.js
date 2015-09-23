@@ -3,6 +3,7 @@ var User = require('./user.model'),
     Gym = require('../gym/gym.model');
 
 module.exports = {
+    ////GETS ALL USER OBJECTS IN COLLECTION////
     getAllUsers: function (req, res) {
         User.find(req.query)
             .exec(function (err, response) {
@@ -13,6 +14,7 @@ module.exports = {
                 }
             });
     },
+    ////GETS SPECIFIC USER OBJECT////
     findByID: function (req, res) {
         User.findById(req.params.memberId)
             .exec(function (err, response) {
@@ -23,6 +25,7 @@ module.exports = {
                 }
             });
     },
+    ////GETS SPECIFIC USER'S INFO////
     getUserDetails: function (req, res) {
         User.findById(req.params.memberId)
             .exec(function (err, response) {
@@ -58,6 +61,7 @@ module.exports = {
                 }
             });
     },
+    ////GETS USER'S LOGOS PATHWAY////
     getUserLogos: function (req, res) {
         User.findById(req.params.memberId)
             .exec(function (err, response) {
@@ -68,6 +72,7 @@ module.exports = {
                 }
             });
     },
+    ////GETS USER'S PATHOS PATHWAY////
     getUserPathos: function (req, res) {
         User.findById(req.params.memberId)
             .exec(function (err, response) {
@@ -78,6 +83,7 @@ module.exports = {
                 }
             });
     },
+    ////GETS USER'S ETHOS PATHWAY////
     getUserEthos: function (req, res) {
         User.findById(req.params.memberId)
             .exec(function (err, response) {
@@ -88,6 +94,7 @@ module.exports = {
                 }
             });
     },
+    ////ADDS NEW USER TO THE COLLECTION////
     addUser: function (req, res) {
         var newUser = new User(req.body);
         newUser.save(function (err, response) {
@@ -164,6 +171,7 @@ module.exports = {
             }
         });
     },
+    ////UPDATES SPECIFIC USER OBJECT////
     updateUser: function (req, res) {
         User.findByIdAndUpdate(req.body._id, req.body)
             .exec(function (err, response) {
@@ -174,6 +182,7 @@ module.exports = {
                 }
             });
     },
+    ////UPDATES A SPECIFIC USER'S SPECIFIC EVALUATION BASED ON TRIGGERS IN THE FRONT END////
     updateEvalStatus: function (req, res) {
         User.findById(req.body.userID)
             .exec(function (err, response) {
@@ -248,6 +257,7 @@ module.exports = {
                 }
             });
     },
+    ////UPDATES WHETHER A SPECIFIC USER IS OR IS NOT AN ADMIN////
     userIsAdminUpdate: function (req, res) {
         User.findById(req.body.userID)
             .exec(function (err, response) {
@@ -266,6 +276,7 @@ module.exports = {
                 }
             });
     },
+    ////UPDATES WHETHER A SPECIFIC USER IS OR IS NOT ACTIVE////
     userIsActiveUpdate: function (req, res) {
         User.findById(req.body.userID)
             .exec(function (err, response) {
@@ -285,6 +296,8 @@ module.exports = {
             });
     }
 };
+
+////DELETE ONCE PUSHED LIVE////
 
 /* For initial user add testing -- http://localhost:8555/api/add-user
 {

@@ -254,6 +254,8 @@ module.exports = {
     }
 };
 
+////DELETE ONCE PUSHED LIVE////
+
 /* For testing adding new gym with Postman
 {
     "name": "The Gorilla Joe"

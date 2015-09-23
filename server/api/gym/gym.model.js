@@ -34,10 +34,3 @@ var newGymSchema = new Schema({
 });
 
 module.exports = mongoose.model('gyms', newGymSchema);
-
-//For testing with Postman -- http://localhost:8555/api/gym
-/*
-{
-    "name": "The Gorilla Joe"
-}
-*/
